@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../kanji.ico">
+
+    <title>Random kanji</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../css/cover.css" rel="stylesheet">
+  </head>
+
+  <body class="text-center">
+
+    <div class="container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand">Random kanji</h3>
+            <nav>
+                <ul class="nav nav-pills float-right">
+                    <li id="categoryN1" class="nav-item"><a class="nav-link" href="#">N1</a></li>
+                    <li id="categoryN2" class="nav-item"><a class="nav-link" href="#">N2</a></li>
+                    <li id="categoryN3" class="nav-item"><a class="nav-link" href="#">N3</a></li>
+                    <li id="categoryN4" class="nav-item"><a class="nav-link" href="#">N4</a></li>
+                    <li id="categoryN5" class="nav-item"><a class="nav-link active" href="#">N5</a></li>
+                </ul>
+            </nav>
+        </div>
+      </header>
+
+      <main id="kanjiBlock" role="main" class="inner cover">
+        <h1 class="display-1" th:text="${kanji.character}"></h1>
+        <p class="lead">
+           <a id="nextKanji" class="btn btn-lg btn-success" href="#" role="button">Show meaning</a>
+        </p>
+        <p class="lead"> 
+        	<div class="row">
+		        <div id="kanjiOnyomi" class="col-6 text-left invisible">
+		            <p th:text="${kanji.onyomi}" />
+		        </div>
+		        <div id="kanjiKunyomi" class="col-6 text-right invisible">
+		            <p th:text="${kanji.kunyomi}" />
+		        </div>
+		        <div id="kanjiMeaning" class="col-12 text-center invisible">
+		            <p th:text="${kanji.meaning}" />
+		        </div>
+	    	</div>
+	    </p>
+      </main>
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p><b>contact:</b> kanji.random(AT)gmail(DOT)com</p>
+        </div>
+      </footer>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/popper.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/main.js"></script>
+  
+
+</body></html>
