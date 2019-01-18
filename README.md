@@ -18,7 +18,6 @@ Full source code of www.randomkanji.com web application.
    ./mvnw spring-boot:run
   ```
 
-
 # Technology Stack
 - Java 8
 - Spring boot 2.1.2

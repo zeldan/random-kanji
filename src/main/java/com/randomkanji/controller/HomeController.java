@@ -2,6 +2,7 @@ package com.randomkanji.controller;
 
 import java.util.Collections;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +13,10 @@ import com.randomkanji.domain.Kanji;
 import com.randomkanji.service.KanjiService;
 
 @Controller
+@RequiredArgsConstructor
 public class HomeController {
 
-    @Autowired
-    private KanjiService kanjiService;
+    private final KanjiService kanjiService;
 
     @GetMapping("/")
     public String index(Model model) {

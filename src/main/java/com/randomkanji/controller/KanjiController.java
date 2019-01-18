@@ -1,8 +1,11 @@
 package com.randomkanji.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +18,10 @@ import com.randomkanji.domain.Kanji;
 import com.randomkanji.service.KanjiService;
 
 @Controller
+@RequiredArgsConstructor
 public class KanjiController {
 
-    @Autowired
-    private KanjiService kanjiService;
+    private final KanjiService kanjiService;
 
     @GetMapping("/random")
     public String index(Model model, @RequestParam("categories") String categories) {
@@ -29,17 +32,11 @@ public class KanjiController {
     }
 
     private List<JlptLevel> mapToJlptCategories(String categories) {
-        List<JlptLevel> jlptCategories = new ArrayList<>();
         if (!Strings.isEmpty(categories)) {
-            for (String category : categories.split(",")) {
-                jlptCategories.add(JlptLevel.valueOf(category));
-            }
+            return Arrays.asList(categories.split(",")).stream().map(category -> JlptLevel.valueOf(category)).collect(Collectors.toList());
         } else {
-            for (JlptLevel jlptLevel : JlptLevel.values()) {
-                jlptCategories.add(jlptLevel);
-            }
+            return Arrays.asList(JlptLevel.values()).stream().collect(Collectors.toList());
         }
-        return jlptCategories;
     }
 
 }
