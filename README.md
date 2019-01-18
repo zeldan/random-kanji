@@ -2,14 +2,24 @@
 
 Website: www.randomkanji.com
 
-# Data
+# The project
 
-You can find the kanji collection in 'data' directory.
+Full source code of www.randomkanji.com web application. 
 
-Import kanji:
-mongoimport --db test --collection kanji kanji.json --jsonArray
+# How to start
+
+1. Run MongoDB 4
+2. Import kanji collection to MongoDB (data/kanji.json)
+```
+   mongoimport --db test --collection kanji kanji.json --jsonArray
+```
+3. Run application 
+```
+   ./mvnw spring-boot:run
+  ```
+
 
 # Technology Stack
 - Java 8
-- Spring boot 2.0.1
-- MongoDB 3.4.10
+- Spring boot 2.1.2
+- MongoDB 4.0.2

@@ -14,14 +14,14 @@ import com.randomkanji.service.KanjiService;
 @Controller
 public class HomeController {
 
-	@Autowired
-	private KanjiService kanjiService;
+    @Autowired
+    private KanjiService kanjiService;
 
-	@GetMapping("/")
-	public String index(Model model) {
-		Kanji kanji = kanjiService.getKanjiBycategories(Collections.singletonList(JlptLevel.N5));
-		model.addAttribute("kanji", kanji);
-		return "index";
-	}
+    @GetMapping("/")
+    public String index(Model model) {
+        Kanji kanji = kanjiService.getKanjiBycategories(Collections.singletonList(JlptLevel.N5));
+        model.addAttribute("kanji", kanji);
+        return "index";
+    }
 
 }

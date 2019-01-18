@@ -20,22 +20,22 @@ import com.randomkanji.domain.Kanji;
 @Service
 public class KanjiService {
 
-	private static final Logger LOG = LoggerFactory.getLogger(KanjiService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(KanjiService.class);
 
-	@Autowired
-	private MongoTemplate mongoTemplate;
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
-	public Kanji getKanjiBycategories(List<JlptLevel> jlptLevels) {
-		List<String> jlptCategories = new ArrayList<>();
-		for (JlptLevel jlptLevel : jlptLevels) {
-			jlptCategories.add(jlptLevel.toString());
-		}
-		SampleOperation matchStage = Aggregation.sample(1);
-		MatchOperation inStage = Aggregation.match(new Criteria("category").in(jlptCategories));
-		Aggregation aggregation = Aggregation.newAggregation(inStage, matchStage);
-		AggregationResults<Kanji> output = mongoTemplate.aggregate(aggregation, "kanji", Kanji.class);
-		LOG.info("Generate kanji: {}", output.getUniqueMappedResult());
-		return output.getUniqueMappedResult();
-	}
+    public Kanji getKanjiBycategories(List<JlptLevel> jlptLevels) {
+        List<String> jlptCategories = new ArrayList<>();
+        for (JlptLevel jlptLevel : jlptLevels) {
+            jlptCategories.add(jlptLevel.toString());
+        }
+        SampleOperation matchStage = Aggregation.sample(1);
+        MatchOperation inStage = Aggregation.match(new Criteria("category").in(jlptCategories));
+        Aggregation aggregation = Aggregation.newAggregation(inStage, matchStage);
+        AggregationResults<Kanji> output = mongoTemplate.aggregate(aggregation, "kanji", Kanji.class);
+        LOG.info("Generate kanji: {}", output.getUniqueMappedResult());
+        return output.getUniqueMappedResult();
+    }
 
 }

@@ -17,29 +17,29 @@ import com.randomkanji.service.KanjiService;
 @Controller
 public class KanjiController {
 
-	@Autowired
-	private KanjiService kanjiService;
+    @Autowired
+    private KanjiService kanjiService;
 
-	@GetMapping("/random")
-	public String index(Model model, @RequestParam("categories") String categories) {
-		List<JlptLevel> jlptLevels = mapToJlptCategories(categories);
-		Kanji kanji = kanjiService.getKanjiBycategories(jlptLevels);
-		model.addAttribute("kanji", kanji);
-		return "index :: #kanjiBlock";
-	}
+    @GetMapping("/random")
+    public String index(Model model, @RequestParam("categories") String categories) {
+        List<JlptLevel> jlptLevels = mapToJlptCategories(categories);
+        Kanji kanji = kanjiService.getKanjiBycategories(jlptLevels);
+        model.addAttribute("kanji", kanji);
+        return "index :: #kanjiBlock";
+    }
 
-	private List<JlptLevel> mapToJlptCategories(String categories) {
-		List<JlptLevel> jlptCategories = new ArrayList<>();
-		if (!Strings.isEmpty(categories)) {
-			for (String category : categories.split(",")) {
-				jlptCategories.add(JlptLevel.valueOf(category));
-			}
-		} else {
-			for (JlptLevel jlptLevel : JlptLevel.values()) {
-				jlptCategories.add(jlptLevel);
-			}
-		}
-		return jlptCategories;
-	}
+    private List<JlptLevel> mapToJlptCategories(String categories) {
+        List<JlptLevel> jlptCategories = new ArrayList<>();
+        if (!Strings.isEmpty(categories)) {
+            for (String category : categories.split(",")) {
+                jlptCategories.add(JlptLevel.valueOf(category));
+            }
+        } else {
+            for (JlptLevel jlptLevel : JlptLevel.values()) {
+                jlptCategories.add(jlptLevel);
+            }
+        }
+        return jlptCategories;
+    }
 
 }
