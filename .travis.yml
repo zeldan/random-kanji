@@ -14,6 +14,8 @@ before_install:
   -in deploy.enc -out deploy -d
 - chmod +x mvnw
 - chmod +x ./scripts/deploy.sh
+before_script:
+- chmod 600 deploy && mv deploy ~/.ssh/idrsa
 script:
 - "./mvnw clean package"
 after_success:
