@@ -3,7 +3,7 @@ jdk:
 - oraclejdk8
 addons:
   sshknownhosts:
-    - 159.65.124.37
+  - 159.65.124.37
 env:
   global:
   - REMOTEUSER=deploy
