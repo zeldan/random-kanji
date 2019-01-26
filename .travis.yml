@@ -1,11 +1,18 @@
 language: java
- 
 jdk:
-  - oraclejdk8
- 
+- oraclejdk8
+addons:
+  sshknownhosts:
+    - 159.65.124.37
+env:
+  global:
+  - REMOTEUSER=deploy
+  - REMOTEHOST=159.65.124.37
 before_install:
- - chmod +x mvnw
- 
+- openssl aes-256-cbc -K $encrypted_fdea4f59e87e_key -iv $encrypted_fdea4f59e87e_iv
+  -in deploy.enc -out deploy -d
+- chmod +x mvnw
 script:
- - ./mvnw clean package
- 
+- "./mvnw clean package"
+after_success:
+- "./scripts/deploy.sh"
