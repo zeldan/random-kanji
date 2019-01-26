@@ -11,11 +11,13 @@ env:
   - REMOTE_APP_DIR=/home/deploy
 before_install:
 - openssl aes-256-cbc -K $encrypted_33d270911dca_key -iv $encrypted_33d270911dca_iv
-  -in deploy.enc -out deploy -d
+  -in deploy.enc -out /tmp/deploy_key -d
 - chmod +x mvnw
 - chmod +x ./scripts/deploy.sh
 before_script:
-- chmod 600 deploy && mv deploy ~/.ssh/idrsa
+- eval "$(ssh-agent -s)" #start the ssh agent
+- chmod 600 /tmp/deploy_key 
+- ssh-add /tmp/deploy_key
 script:
 - "./mvnw clean package"
 after_success:
